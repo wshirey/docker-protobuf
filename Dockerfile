@@ -70,6 +70,8 @@ RUN go get -u -v -ldflags '-w -s' \
         moul.io/protoc-gen-gotemplate \
         github.com/micro/protoc-gen-micro \
         && (cd ${GOPATH}/src/github.com/lyft/protoc-gen-validate && make build) \
+        && git -C "$(go env GOPATH)"/src/github.com/golang/protobuf checkout "v1.2.0" \
+        && go install github.com/golang/protobuf/protoc-gen-go \
         && install -c ${GOPATH}/bin/protoc-gen* ${OUTDIR}/usr/bin/
 
 RUN mkdir -p ${GOPATH}/src/github.com/pseudomuto/protoc-gen-doc && \
