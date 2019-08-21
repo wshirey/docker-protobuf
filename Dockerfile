@@ -69,10 +69,10 @@ RUN go get -u -v -ldflags '-w -s' \
         github.com/envoyproxy/protoc-gen-validate \
         moul.io/protoc-gen-gotemplate \
         github.com/micro/protoc-gen-micro \
+        github.com/chrusty/protoc-gen-jsonschema \
         && (cd ${GOPATH}/src/github.com/envoyproxy/protoc-gen-validate && make build) \
         && git -C "$(go env GOPATH)"/src/github.com/golang/protobuf checkout "v1.2.0" \
         && go install github.com/golang/protobuf/protoc-gen-go \
-        && go install github.com/chrusty/protoc-gen-jsonschema \
         && install -c ${GOPATH}/bin/protoc-gen* ${OUTDIR}/usr/bin/
 
 RUN mkdir -p ${GOPATH}/src/github.com/pseudomuto/protoc-gen-doc && \
